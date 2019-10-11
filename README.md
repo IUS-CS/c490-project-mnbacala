@@ -1,4 +1,4 @@
-= CSCI C490 Design Document Requirements
+# CSCI C490 Design Document Requirements
 
 You will create a document to describe the particular Android project you wish to complete for this course.
 
@@ -9,6 +9,8 @@ You will create a document to describe the particular Android project you wish t
 ## Section 1 – Motivation for Your App
 
 In this section, describe the motivation behind your choice of app to design and implement. Also indicate who is the target user base. Include references to existing apps that are similar to the app you are proposing – references must include the name of the app, the platform (e.g., iOS, Android, Windows, MacOS, etc.), and a link to a website describing the app.
+
+***
 
 When it comes to purchasing things, such as clothes and shoes, I'm a fairly frugal guy. I also enjoy browsing reddit in my free time. That being said, there are a couple of subreddits that I'm subscribed to that users post items that are on sale, [/r/frugalmalefashion](https://www.reddit.com/r/frugalmalefashion/) and [/r/sneakerdeals](https://www.reddit.com/r/SneakerDeals/). Of course, I could view these subreddits on a web browser or an app, but those involve multiple steps including scrolling through a long list of subscribed subreddits, opening each in a new tab, or if viewing in an app, opening one subreddit, gesturing to swipe back to the list, scrolling through the list, etc. Why go through all of these steps when one could have access of all posts in a central location? Introducing CartIt, a feed-style clothing deals app! (Name to be updated)
 
@@ -21,10 +23,6 @@ In this section, describe using sentences and paragraphs written in English, the
 Additionally, for this section, you must describe how your app will meet the data persistence requirement. Describe where the data will be stored (e.g., on the device, in the cloud, etc.), how it will be stored (e.g., in an SQL database), at what points during app execution that the storage of data will occur (consider using the Android app Life Cycle for describing when), how the data will be retrieved upon restart of the app, and at what point it will be retrieved (again, consider utilizing the Android app Life Cycle).
 
 Finally, for this section, describe how your app will communicate to the outside world. By what means (e.g., Bluetooth, Wi-Fi to Internet, etc.), for what purpose this outside world communication serves with respect to supporting the app’s functionality, and describe what devices or external resources are on the other end of the communication. If the device or other resource at the other end of the communication is going to be created by you (i.e., it does not already exist), then you must give specific details on how you will setup and configure this other device/resource.
-
-In my app's user interface, it will consist of five screens, a home screen containing three buttons, two square buttons next to one another, and one button underneath the two buttons. One button for clothes, which will pull data from /r/frugalmalefashion, one button for shoes, which will pull data from /r/sneakerdeals, and one button for both, which will pull data from both subreddits. Three screens, Clothes, Shoes, Clothes and Shoes, will have the same-style layout, a title bar, floating back button, and a feed of posts containing the submission's title and image of product. The browser window will have a top title bar, that will contain a 'Done' button, returning to the previous window, as well as a bottom navigation bar containing a back button, forward button, share button, and open a button to open the webpage in a web browser.
-
-Regarding the data persistence requirement, the data will be cached within the device storage. The user will be able to swipe right from the edge of the screen to return back to the previous menu. The user will not lose any input data when swiching between screens, the save state will be stored locally. When switching screens, the app will seamlessly save and restore the user's UI state to ensure the user's user interface state expectation.
 
 ## 2.1 User Interface
 
@@ -45,6 +43,14 @@ one diagram per screen. These diagrams must clearly show the layout of your app'
 ## 2.3 Communication
 
 * Your app must demonstrate that it communicates with the outside world, with either another device or an external resource
+
+***
+
+In my app's user interface, it will consist of five screens, a home screen, one screen for clothing posts, one screen for shoe posts, one screen for both clothing and shoe posts, and a webviewer.
+
+Regarding the data persistence requirement, the data will be cached within the device storage. When the app is paused, the application's current state will be saved, and when the app resumes, it will start at the save state. The user will be able to swipe right from the edge of the screen to return back to the previous menu. The user will not lose any input data when swiching between screens, the save state will be stored locally. When switching screens, the app will seamlessly save and restore the user's UI state to ensure the user's user interface state expectation. 
+
+CartIt will communicate with the outside world via Wi-fi and will communicate with the reddit API. The app will communicate with the reddit API to pull data upon pushing one of the buttons.  
 
 ## Section 3 – MVC Breakdown of Your App
 
@@ -73,3 +79,9 @@ If your app’s model is utilizing an SQL database or some resource in the cloud
 Start off with a high-level description of each controller and what screen it controls. Then include which Life Cycle methods are overridden by the controller. This part of the description will almost certainly have to include as a minimum how onCreate is implemented. Describe how and when the controller saves off data into the model, and how and when it retrieves data from the model.
 
 You must describe how your app will satisfy the data persistence requirement in the controller descriptions and/or the model descriptions. If the model is designed so that it always keeps the persistent data store up-to-date, then the model description will more than likely discuss persistence. If the controller is implemented to update the persistent data store at some specific time of the app’s life cycle, then the controller’s description will more than likely discuss persistence. The discussion might need to appear in both the model and the controller descriptions.
+
+***
+
+The main menu will contain a logo, title bar, three buttons, two square buttons next to one another, and one rectangular button underneath the two buttons. One button for clothes, which will pull data from /r/frugalmalefashion, one button for shoes, which will pull data from /r/sneakerdeals, and one button for both, which will pull data from both subreddits. Three screens, Clothes, Shoes, Clothes and Shoes, will have the same-style layout, a title bar with a back button which will take the user back to the main menu, and a feed of posts containing the submission's title and image of product. The browser window will have a top title bar containing a close button which returns to the previous screen, a refresh button, and a kebab menu icon for additional settings.
+
+!(https://github.com/IUS-CS/c490-project-mnbacala/blob/master/images/cartitGraph.png "Diagram of application")
