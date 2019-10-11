@@ -50,7 +50,7 @@ In my app's user interface, it will consist of five screens, a home screen, one 
 
 Regarding the data persistence requirement, the data will be cached within the device storage. When the app is paused, the application's current state will be saved, and when the app resumes, it will start at the save state. The user will be able to swipe right from the edge of the screen to return back to the previous menu. The user will not lose any input data when swiching between screens, the save state will be stored locally. When switching screens, the app will seamlessly save and restore the user's UI state to ensure the user's user interface state expectation. 
 
-CartIt will communicate with the outside world via Wi-fi and will communicate with the reddit API. The app will communicate with the reddit API to pull data upon pushing one of the buttons.  
+CartIt will communicate with the outside world via Wi-fi and will communicate with the reddit API. The app will communicate with the reddit API to pull data upon starting the application. 
 
 ## Section 3 – MVC Breakdown of Your App
 
