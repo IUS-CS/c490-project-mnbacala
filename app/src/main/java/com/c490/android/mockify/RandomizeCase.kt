@@ -32,8 +32,7 @@ class RandomizeCase {
             println(toReturn)
             if (str != "q")
             {
-                println("\n" + "This text has been copied to your clipboad. Press Ctrl + V to paste.")
-                println("\nPress Q to quit.")
+
             }
         }
     }
