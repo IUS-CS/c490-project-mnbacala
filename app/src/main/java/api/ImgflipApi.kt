@@ -9,14 +9,15 @@ import retrofit2.http.POST
 import retrofit2.http.Url
 
 interface ImgflipApi {
-    @GET("/")
-    fun fetchContents(): retrofit2.Call<String>
 
     @GET("memegenerator/102156234" +
             "&format=json" +
             "&nojsoncallback=1" +
             "&extras=url_s")
     fun fetchPhoto(@Url url: String): Call<ImgflipResponse>
+
+    @GET
+    fun fetchUrlBytes(@Url url: String): Call<ResponseBody>
 
     //@POST
 }

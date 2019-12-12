@@ -8,31 +8,51 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import api.ImgflipApi
+import okhttp3.Request
 import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.net.URL
 
-private const val TAG = "FlickrFetchr"
+private const val TAG = "ImgflipFetchr"
+private const val baseURL = "https://api.imgflip.com/get_memes"
+
 
 class ImgflipFetchr {
     private val imgflipApi: ImgflipApi
 
     init {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.imgflip.com/get_memes")
+            .baseUrl(baseURL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         imgflipApi = retrofit.create(ImgflipApi::class.java)
     }
 
+    @WorkerThread
+    fun fetchPhoto(url: String): Bitmap? {
+        val resp: Response<ResponseBody> = imgflipApi.fetchUrlBytes(url).execute()
+        val bitmap = resp.body()?.byteStream()?.use(BitmapFactory::decodeStream)
+        return bitmap
+    }
+
     fun fetchSpongebob(url: String): LiveData<List<Spongebob>> {
         val ret = MutableLiveData<List<Spongebob>>()
+        /*val jsonBody = JSONObject()
+        jsonBody.put("template_id", "102156234")
+        jsonBody.put("username", "walmartin")
+        jsonBody.put("password", "")
+        jsonBody.put("text0", "Hello")
+        jsonBody.put("text1", "World")
+        val requestBody = jsonBody.toString()
+        val stringRequest = object:StringRequest(Request.Method.POST, baseURL, object:Response.Listener<String>() {*/
 
-        imgflipApi.fetchPhoto().enqueue(object: Callback<ImgflipResponse> {
+            imgflipApi.fetchPhoto(baseURL).enqueue(object: Callback<ImgflipResponse> {
             override fun onFailure(call: Call<ImgflipResponse>, t: Throwable) {
                 Log.e(TAG, "Could not fetch meme: ${t}")
             }
